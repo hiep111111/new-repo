@@ -1,0 +1,41 @@
+{
+  "name": "service",
+  "version": "1",
+  "port": "3000",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "appCode": "TS",
+  "tenantId": "629597ad4654a11c9dabe250",
+
+  "apm": {
+    "serverUrl": "https://apm-dev.erpproject.vn"
+  },
+
+  "database": "mongodb://192.168.1.60/bos",
+  "domain": "http://dev.erp.com",
+
+  "messageBroker": {
+    "server": "amqp://admin:zxczxc@192.168.1.60?heartbeat=60",
+    "exchangeName": "erp"
+  },
+
+  "testDatabase": "mongodb://192.168.1.60/test",
+  "socketPath": "/ws/socket.io",
+
+  "testMessageBroker": {
+    "server": "amqp://admin:zxczxc@192.168.1.60?heartbeat=60",
+    "exchangeName": "test"
+  },
+
+  "smtpTransport": {
+    "host": "smtp.develmail.com",
+    "port": 25,
+    "auth": {
+      "user": "VAR6CV6CS6U3F3WDOAAEWAK6JU",
+      "pass": "KRVZNNOZOQVRJFI37PHN2F5KWI"
+    },
+    "from": "TMSSmart Notification <noreply@iriso.vn>"
+  },
+
+  "autoCleanDataInterval": "*/30 * * * *",
+  "logFile": "./logs/"
+}

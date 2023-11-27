@@ -1,0 +1,238 @@
+{
+	"app": {
+		"name": "TMS Smart",
+		"copyright": "Bản quyền © 2017-2021 bởi TSC Services."
+	},
+
+	"menu": {
+		"module": "Module",
+		"notifications": "Show all notifications",
+		"sent": "sent",
+		"at": "at",
+		"account": "Account",
+		"profile": "Profile",
+		"timesheets": "Timesheets",
+		"checkIn": "Check In",
+		"checkOut": "Check Out",
+		"tasks": "Tasks",
+		"logOut": "Log Out",
+		"quickSearch": "Quick Search Function"
+	},
+
+	"btn": {
+		"create": "Create",
+		"delete": "Delete",
+		"goBack": "Go back",
+		"save": "Save",
+		"update": "Update",
+		"search": "Find",
+		"searchAll": "Find All",
+		"send": "Send",
+    "export": "Export",
+    "accept": "Accept",
+    "reject": "Reject",
+    "createAndSend": "Create & Send",
+    "process": "Process",
+    "finish": "Finish",
+		"rate": "Rate",
+		"print": "Print",
+		"showFilter": "Show Filter",
+		"showFirstObject": "Show Object",
+		"registerPolicy": "Register Policy",
+		"showFullScreen": "Show Full Screen",
+		"showProcessGuideline": "Show Process Guideline",
+		"showObjectList": "Show Object List",
+		"clone": "Clone",
+		"showPrevObject": "Showw Previous Object",
+		"showNextObject": "Show Next Object",
+		"resetQuery": "Reset",
+		"resetGroupBy": "Reset Group By",
+		"drillDown": "Drill Down",
+		"import": "Import",
+		"post": "Post",
+		"reverse": "Reverse"
+	},
+
+	"tab": {
+		"search": "Tìm kiếm",
+		"utility": "Tiện ích",
+		"queryName": "Query Name",
+		"isDefaultQuery": "Is Default Query",
+		"saveQuery": "Save Query",
+		"savedQueryName": "Saved Query",
+    "advancedSearch": "Advanced Search",
+    "debug": "Debug"
+  },
+
+  "selection": {
+    "chooseOne": "Choose One",
+		"searchOne": "Please type the keyword..",
+		"onDeleteSelectedItem": "Delete selected item",
+		"chooseAction": "Choose action"
+  },
+
+	"form": {
+		"commentList": "Comment List",
+    "comment": "Comment",
+		"messageList": "Messages",
+		"searchingCondition": "Searching Condition",
+		"groupingField": "Group Field"
+	},
+
+	"table": {
+		"order": "Order",
+		"name": "Name",
+		"fieldName": "Field Name",
+		"fieldValue": "Field Value"
+	},
+
+	"fileAttachmentList": "List Of Attachments",
+
+	"file": {
+		"fileName": "File Name",
+		"fileType": "File Type",
+		"fileSize": "File Size",
+		"uploadedAt": "Uploaded At"
+	},
+
+	"label": {
+		"groupBy": "Group By"
+	},
+
+	"msg": {
+    "register": {
+      "failure": "Function register is failure",
+      "success": "Function register is success"
+    },
+
+		"create": {
+			"failure": "Create failure",
+			"inprocess": "Create inprocess",
+      "success": "Create success"
+		},
+
+		"delete": {
+			"confirmMessage": "Are you sure to delete this record?",
+			"failure": "Delete failure",
+			"inprocess": "Delete inprocess",
+			"success": "Delete success"
+		},
+
+		"httpResCode": {
+			"200": "",
+			"201": "",
+			"301": "",
+			"401": "",
+			"403": "",
+			"404": "",
+			"405": "",
+			"422": "",
+			"500": "",
+			"502": "",
+			"503": "",
+			"2xx": "",
+			"3xx": "",
+			"4xx": "",
+			"5xx": ""
+		},
+		"httpResponseCode": {
+			"200": "OK",
+			"201": "Created",
+			"301": "Moved Permanently",
+			"401": "Unauthorized",
+			"403": "Forbidden",
+			"404": "Not Found",
+			"405": "Method Not Allowed",
+			"422": "422 Unprocessable Entity",
+			"500": "Internal Server Error",
+			"502": "Bad Gateway",
+			"503": "Service Unavailable",
+			"2xx": "Success",
+			"3xx": "Redirection",
+			"4xx": "Client errors",
+			"5xx": "Server errors"
+		},
+
+		"read": {
+			"failure": "Read failure",
+			"inprocess": "Read inprocess",
+			"success": "Read success"
+		},
+
+		"title": {
+			"confirm": "Confirm",
+			"error": "Error",
+			"info": "Information",
+			"warning": "Warning"
+		},
+
+		"update": {
+			"failure": "Update failure",
+			"inprocess": "Update inprocess",
+			"success": "Update success"
+		},
+
+		"validate": {
+			"failure": "validate failure.",
+			"inprocess": "validate inprocess.",
+			"success": "validate success.",
+			"isDuplicated": "is duplicated.",
+			"isRequired": "is required."
+		},
+
+		"filter": {
+			"failure": "không phù hợp."
+		},
+
+		"import": {
+			"failure": "Import failure",
+			"success": "Import success"
+		}
+	},
+
+	"pageNav": {
+		"itemsPerPage": "{itemsPerPage, plural, =0 {#} other {# (records / page)}}",
+		"totalAmount": "{totalAmount, plural, =0 {No record found. } =1 {Found: 1 record. } other {Found: # records. }}",
+		"selectedAmount": "{selectedAmount, plural, =0 {} =1 {with 1 selected record. } other {with # selected records. }}"
+	},
+
+	"mainMenu": {
+		"asp": "ASP",
+		"BI": "Report",
+		"crm": "CRM",
+		"qualityAssurance": "Quality Assurance",
+		"serviceDesk": "Service Desk",
+		"staff": "Staff",
+		"repairService": "Repair Service",
+		"accounting": "Accounting",
+		"sales": "Sales",
+		"administration": "Administration",
+		"humanResource": "Human Resource",
+		"warehouse": "Warehouse",
+		"purchase": "Purchase",
+		"delivery": "Delivery",
+		"masterData": "Master Data",
+		"knowledge": "Knowledge",
+		"system": "System",
+		"automation": "Automation",
+		"userGuide": "User Guide",
+		"content": "Content",
+		"assembly": "Production"
+	},
+
+	"search": "Search",
+	"choose": "Choose",
+	"searchResult": "Search Result",
+	"searchCusotmerGroupId": "Customer Group",
+	"searchCustomerName": "Customer Name",
+	"searchCustomerCode": "Customer Code",
+	"customerGroupName": "Customer Group",
+	"customerName": "Customer Name",
+	"customerCode": "Customer Code",
+	"storeTypeId": "Store Type",
+	"storeTypeName": "Store Type",
+	"storeId": "Store",
+	"storeName": "Store",
+	"searchProductCode": "Product Code",
+	"searchProductName": "Product Name"
+}

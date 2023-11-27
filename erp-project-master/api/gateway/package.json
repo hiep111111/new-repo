@@ -1,0 +1,16 @@
+{
+  "name": "gateway",
+  "version": "1.16.11",
+  "description": "API Gateway",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express-gateway": "^1.16.11",
+    "path": "^0.12.7"
+  }
+}

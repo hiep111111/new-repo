@@ -1,0 +1,114 @@
+server {
+    listen 80;
+    listen [::]:80;
+
+    root  /usr/share/nginx/html;
+    index  index.html;
+    error_log  /var/log/nginx/error.log;
+    access_log /var/log/nginx/access.log;
+    error_page 405 @error405;
+    error_page 400 @error405;
+	
+    location @error405 {
+        add_header "Access-Control-Allow-Origin"  *;
+        add_header "Access-Control-Allow-Methods" "GET, POST, OPTIONS, HEAD";
+        add_header "Access-Control-Allow-Headers" "Authorization, Origin, X-Requested-With, Content-Type, Accept";
+        return 202;
+    }
+
+    #location /api/ {
+    #    # [!] check UP vs DOWN steam is same IP RANGE
+    #    proxy_pass http://172.17.0.1:30001/;
+    #}
+	
+    location = /favicon.ico {
+        access_log off;
+        log_not_found off;
+    }
+
+    location /automation/ {
+        alias /usr/share/nginx/html/automation/;
+        error_page 404 /automation/index.html;
+    }
+
+    location /system/ {
+        alias /usr/share/nginx/html/system/;
+        error_page 404 /system/index.html;
+    }
+
+    location /qems/ {
+        alias /usr/share/nginx/html/qems/;
+        error_page 404 /qems/index.html;
+    }
+
+    location /accounting/ {
+        alias /usr/share/nginx/html/accounting/;
+        error_page 404 /accounting/index.html;
+    }
+
+    location /staff/ {
+        alias /usr/share/nginx/html/staff/;
+        error_page 404 /staff/index.html;
+    }
+
+    location /content/ {
+        alias /usr/share/nginx/html/content/;
+        error_page 404 /content/index.html;
+    }
+    
+    location /userGuide/ {
+        alias /usr/share/nginx/html/userGuide/;
+        error_page 404 /userGuide/index.html;
+    }
+
+    location /assembly/ {
+        alias /usr/share/nginx/html/assembly/;
+        error_page 404 /assembly/index.html;
+    }
+
+    location /impex/ {
+        alias /usr/share/nginx/html/impex/;
+        error_page 404 /impex/index.html;
+    }
+
+    location /mobile/ {
+        alias /usr/share/nginx/html/mobile/;
+        error_page 404 /mobile/index.html;
+    }
+
+    location /masterData/ {
+        alias /usr/share/nginx/html/masterData/;
+        error_page 404 /masterData/index.html;
+    }
+
+    location /warehouse/ {
+        alias /usr/share/nginx/html/warehouse/;
+        error_page 404 /warehouse/index.html;
+    }
+
+    location /login/ {
+        alias /usr/share/nginx/html/home/;
+        error_page 404 /;
+    }
+
+    location /login {
+        alias /usr/share/nginx/html/home/;
+        error_page 404 /;
+    }
+
+    location /logout/ {
+        alias /usr/share/nginx/html/home/;
+        error_page 404 /;
+    }
+
+    location /home/ {
+        alias /usr/share/nginx/html/home/;
+        error_page 404 /;
+    }
+
+    location / {
+        root   /usr/share/nginx/html/home;
+        index  index.html;
+    }
+}
+

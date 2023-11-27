@@ -1,0 +1,9 @@
+node_modules/
+infra/service-bus/data/
+infra/elasticsearch/data/
+**/*.bundle.js.*
+web/*/static/*.bundle.js
+**/*.log
+api/service/jest_0/
+mobile/dms/metro-cache/
+api/.env

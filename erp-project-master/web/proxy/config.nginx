@@ -1,0 +1,156 @@
+#map $http_upgrade $connection_upgrade {
+#    default upgrade;
+#    ''      close;
+#}
+
+server {
+  listen 80;
+  listen [::]:80;
+  server_name dev.erp.project.com;
+  error_page 400 @error405;
+  client_max_body_size 100M;
+
+  location @error405 {
+    add_header "Access-Control-Allow-Origin"  *;
+    add_header "Access-Control-Allow-Methods" "GET, POST, OPTIONS, HEAD";
+    add_header "Access-Control-Allow-Headers" "Authorization, Origin, X-Requested-With, Content-Type, Accept";
+    return 202;
+  }
+
+  location ^~ /.well-known/ {
+    return 200 "_Q3PntpD9Bh3XRse1tvdp1d0DhjdSMIYRbBHqbD2xho.2EcWyuGI4rmZFK2xm-VxsKv2tXqoGcyBmZ2Z87ZVJ98";
+  }
+
+  location ^~ /sb/ {
+    proxy_pass http://172.17.0.1:30003;
+  }
+
+  location ^~ /api/ {
+    rewrite ^/api/(.*)$ /$1 last;
+  }
+
+  location ^~ /ws/ {
+    proxy_pass http://172.17.0.1:30006;
+
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+  }
+
+  location ^~ /v1/messages/socket.io/ {
+    proxy_pass http://172.17.0.1:30001;
+  }
+
+  location ^~ /v1/fgStockExports/printLabel/ {
+    proxy_pass http://172.17.0.1:30001;
+    proxy_connect_timeout 600s;
+    proxy_read_timeout 600s;
+    proxy_send_timeout 600s;
+  }
+
+  location ^~ /v1/ {
+    proxy_pass http://172.17.0.1:30001;
+    proxy_connect_timeout 1000s;
+    proxy_read_timeout 1000s;
+    proxy_send_timeout 1000s;
+  }
+
+  location ^~ /supporting/ {
+    proxy_pass http://172.17.0.1:30001;
+  }
+
+  location ^~ /payload/ {
+    proxy_pass http://172.17.0.1:30001;
+  }
+
+  location ^~ /webhook/ {
+    proxy_pass http://172.17.0.1:30001;
+  }
+
+  location ^~ /registry/ {
+    proxy_pass http://172.17.0.1:5000;
+  }
+
+  location / {
+    # proxy_set_header Host $host;
+    proxy_pass http://172.17.0.1:81;
+  }
+}
+
+server {
+  server_name dev-api.brosify.com;
+  listen 80;
+  listen [::]:80;
+
+  location @error405 {
+    add_header "Access-Control-Allow-Origin"  *;
+    add_header "Access-Control-Allow-Methods" "GET, POST, OPTIONS, HEAD";
+    add_header "Access-Control-Allow-Headers" "Authorization, Origin, X-Requested-With, Content-Type, Accept";
+    return 202;
+  }
+
+  location / {
+    # [!] check UP vs DOWN steam is same IP RANGE
+    proxy_pass http://172.17.0.1:30001/;
+  }
+}
+
+server {
+	listen 80;
+	server_name elastic.brosify.com;
+
+  error_page 400 @error405;
+
+  location @error405 {
+          add_header "Access-Control-Allow-Origin"  *;
+          add_header "Access-Control-Allow-Methods" "GET, POST, OPTIONS, HEAD";
+          add_header "Access-Control-Allow-Headers" "Authorization, Origin, X-Requested-With, Content-Type, Accept";
+          return 202;
+  }
+
+  location / {
+		# auth_basic "Restricted Access";
+		# auth_basic_user_file /etc/nginx/htpasswd.users;
+
+    proxy_pass http://172.16.1.108:5601;
+
+  }
+}
+
+server {
+	listen 80;
+	server_name apm.brosify.com;
+
+  error_page 400 @error405;
+
+  location @error405 {
+    add_header "Access-Control-Allow-Origin"  *;
+    add_header "Access-Control-Allow-Methods" "GET, POST, OPTIONS, HEAD";
+    add_header "Access-Control-Allow-Headers" "Authorization, Origin, X-Requested-With, Content-Type, Accept";
+    return 202;
+  }
+
+  location / {
+    proxy_pass http://172.16.1.108:8200;
+
+  }
+}
+
+server {
+	listen 80;
+	server_name uat.brosify.com;
+
+  error_page 400 @error405;
+
+  location @error405 {
+    add_header "Access-Control-Allow-Origin"  *;
+    add_header "Access-Control-Allow-Methods" "GET, POST, OPTIONS, HEAD";
+    add_header "Access-Control-Allow-Headers" "Authorization, Origin, X-Requested-With, Content-Type, Accept";
+    return 202;
+  }
+
+  location / {
+    proxy_pass http://172.16.1.104:22;
+
+  }
+}

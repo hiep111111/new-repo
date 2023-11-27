@@ -1,0 +1,116 @@
+services:
+  gateway:
+    container_name: "gateway"
+    hostname: "gateway"
+    build: ./gateway
+    image: gateway
+    ports:
+      - "${API_GATEWAY_PUBLIC_PORT}:80"
+      - "${API_GATEWAY_PUBLIC_ADMIN_PORT}:9876"
+    extra_hosts:
+      - "apm.erp.com:192.168.0.106"
+      - "elastic.erp.com:192.168.0.106"
+    volumes:
+      - ./gateway/config:/gateway/config
+      - ./gateway/certs:/gateway/certs
+    environment:
+      - GATEWAY_ADMIN_HOST=0.0.0.0
+      - GATEWAY_ADMIN_PORT=${API_GATEWAY_ADMIN_PORT}
+
+  service-bus:
+    container_name: "service-bus"
+    hostname: "service-bus"
+    build: ./service-bus
+    image: service-bus
+    ports:
+      - "${SERVICE_BUS_ADMIN_PORT}:15672"
+    expose:
+      - "4369"
+      - "5671"
+      - "5672"
+      - "25672"
+    volumes:
+      - ./service-bus/data:/var/lib/rabbitmq/mnesia
+    extra_hosts:
+      - "apm.erp.com:192.168.0.106"
+      - "elastic.erp.com:192.168.0.106"
+    depends_on:
+      - gateway
+  
+  users:
+    container_name: "users"
+    hostname: "users"
+    build: ./users
+    image: users
+    volumes:
+      - ./users/certs/:/service/certs/
+      - ./users/config/:/service/config/
+      - ./users/i18n/:/service/i18n/
+      - ./users/services/:/service/services/
+      - ./users/babel.config.js:/service/babel.config.js
+      - ./users/jest.config.js:/service/jest.config.js
+      - ./users/server.js:/service/server.js
+      - ./core/constants/:/service/constants/
+      - ./core/helpers/:/service/helpers
+      - ./core/startup/:/service/startup
+      - ./core/package.json:/service/package.json
+      - ./core/wait-for-it.sh:/service/wait-for-it.sh
+      - ./core/node_modules/:/service/node_modules
+      # - "/etc/localtime:/etc/localtime:ro"
+      # - "/etc/timezone:/etc/timezone:ro"
+    environment:
+      - DEBUG=app:biz,app:sb #app:db
+      - GATEWAY_ADMIN_API=http://gateway:${API_GATEWAY_ADMIN_PORT}
+      - SERVICE_PORT=${API_SERVICE_PORT}
+      - DATABASE=${DATABASE}
+      - MESSAGE_BROKER_SERVER=${SERVICE_BUS_SERVER}
+      - EXCHANGE_NAME=${SERVICE_BUS_EXCHANGE_NAME}
+      - SMTP_FROM=${SMTP_FROM}
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_PORT=${SMTP_PORT} 
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASS=${SMTP_PASS}
+    command: ["npm", "run", "start-forever"]
+    depends_on:
+      - service-bus
+      # - mongodb
+
+  # repair-service:
+  #   container_name: "repair-service"
+  #   hostname: "repair-service"
+  #   build: ./repairService
+  #   image: repair-service
+  #   volumes:
+  #     - ./repairService/certs/:/service/certs/
+  #     - ./repairService/config/:/service/config/
+  #     - ./repairService/i18n/:/service/i18n/
+  #     - ./repairService/services/:/service/services/
+  #     - ./repairService/test/:/service/test/
+  #     - ./repairService/babel.config.js:/service/babel.config.js
+  #     - ./repairService/jest.config.js:/service/jest.config.js
+  #     - ./repairService/server.js:/service/server.js
+  #     - ./core/constants/:/service/constants/
+  #     - ./core/helpers/:/service/helpers
+  #     - ./core/startup/:/service/startup
+  #     - ./core/package.json:/service/package.json
+  #     - ./core/wait-for-it.sh:/service/wait-for-it.sh
+  #     - ./core/node_modules/:/service/node_modules
+  #     # - "/etc/timezone:/etc/timezone:ro"
+  #   expose:
+  #     - "${API_SERVICE_PORT}"
+  #   environment:
+  #     - DEBUG=app:biz,app:db,app:sb
+  #     - SERVICE_PORT=${API_SERVICE_PORT}
+  #     - DATABASE=${DATABASE}
+  #     - MESSAGE_BROKER_SERVER=${SERVICE_BUS_SERVER}
+  #     - EXCHANGE_NAME=${SERVICE_BUS_EXCHANGE_NAME}
+  #     - TEST_DATABASE=${TEST_DATABASE}
+  #     - SMTP_FROM=${SMTP_FROM}
+  #     - SMTP_HOST=${SMTP_HOST}
+  #     - SMTP_PORT=${SMTP_PORT}
+  #     - SMTP_USER=${SMTP_USER}
+  #     - SMTP_PASS=${SMTP_PASS}
+  #   command: ["npm", "run", "start-forever"]
+  #   depends_on:
+  #     - service-bus
+  #     # - mongodb

@@ -1,0 +1,24 @@
+services:
+  ws_proxy:
+    container_name: "ws_proxy"
+    hostname: "ws_proxy"
+    image: nginx
+    volumes:
+      - ./proxy/config.nginx:/etc/nginx/conf.d/dev.erp.project.com.conf
+    ports:
+      - "80:80"
+
+  ws_bos:
+    container_name: "ws_bos"
+    hostname: "ws_bos"
+    image: nginx
+    volumes:
+      - ./config.nginx:/etc/nginx/conf.d/config.nginx
+      - ./home/static:/usr/share/nginx/html/home
+    ports:
+      - "81:80"
+    command: > 
+      /bin/bash -c "envsubst 
+      < /etc/nginx/conf.d/config.nginx
+      > /etc/nginx/conf.d/default.conf
+      && exec nginx -g 'daemon off;'"

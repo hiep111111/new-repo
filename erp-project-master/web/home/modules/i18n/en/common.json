@@ -1,0 +1,6 @@
+{
+	"userAndPasswordIsRequired": "Please enter your account and password in full.",
+	"invalidCaptcha": "Invalid Captcha entered.",
+	"permissionDenied": "Permission denied.",
+	"errorHasOccurred.": "An error has occurred"
+}

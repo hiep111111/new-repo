@@ -1,0 +1,37 @@
+# Core
+db:
+  redis:
+    emulate: true
+#    host: ${GATEWAY_DB_HOST:-localhost}
+#    port: ${GATEWAY_DB_PORT:-6379}    
+    namespace: EG
+
+# plugins:
+#   jwtScopes:
+#     package: '/gateway/plugins/jwtScopes.js'
+
+crypto:
+  cipherKey: miracle-erp
+  algorithm: aes256
+  saltRounds: 10
+
+# OAuth2 Settings
+session:
+  secret: sessionSecret
+  resave: false
+  saveUninitialized: false
+
+accessTokens:
+  timeToExpiry: 7200000
+  tokenType: 'jwt'
+  issuer: 'express-gateway'
+  audience: 'something'
+  subject: 'somebody'
+  secretOrPrivateKey: ${GATEWAY_SECRET_KEY:-'whatTheFotFat'}
+  checkCredentialExistence: true
+
+refreshTokens:
+  timeToExpiry: 7200000
+  
+authorizationCodes:
+  timeToExpiry: 300000

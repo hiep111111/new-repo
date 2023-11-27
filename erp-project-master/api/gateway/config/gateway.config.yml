@@ -1,0 +1,387 @@
+http:
+  port: ${GATEWAY_PORT:-80}
+
+admin:
+  port: ${GATEWAY_ADMIN_PORT:-9876}
+  hostname: ${GATEWAY_ADMIN_HOST:-0.0.0.0}
+
+apiEndpoints:
+  healthcheck:
+    host: "*"
+    paths: ["/healthcheck"]
+
+  loginByPassword:
+    - host: "*"
+      paths: ["/v1/users/login"]
+      methods: ["POST", "OPTIONS"]
+
+  loginByTokenOptions:
+    - host: "*"
+      paths: ["/v1/users/ping"]
+      methods: ["OPTIONS"]
+
+  loginByToken:
+    - host: "*"
+      paths: ["/v1/users/ping"]
+      methods: ["POST"]
+
+  users:
+    host: "*"
+    paths:
+      - "/v1/users/*"
+      - "/v1/applications/*"
+      - "/v1/modules/*"
+      - "/v1/functions/*"
+      - "/v1/roles/*"
+      - "/v1/services/*"
+      - "/v1/sysPolicies/*"
+      - "/v1/sysAccessLists/*"
+      - "/v1/sysServiceBusEvents/*"
+      - "/v1/sysUserFeatures/*"
+
+  knowledge:
+    host: "*"
+    paths:
+      - "/v1/articleCategories/*"
+      - "/v1/articles/*"
+
+  accounting:
+    host: "*"
+    paths:
+      - "/v1/apInvoices/*"
+      - "/v1/apInvoiceTypes/*"
+      - "/v1/centers/*"
+      - "/v1/vendors/*"
+      - "/v1/accounts/*"
+      - "/v1/accountingEntries/*"
+      - "/v1/importAccountingEntries/*"
+      - "/v1/otherApInvoices/*"
+      - "/v1/fixedAssetCards/*"
+
+  automation:
+    host: "*"
+    paths:
+      - "/v1/comments/*"
+      - "/v1/queries/*"
+      - "/v1/tags/*"
+      - "/v1/playbooks/*"
+      - "/v1/prototypes/*"
+      - "/v1/autobots/*"
+      - "/v1/nodes/*"
+      - "/v1/timers/*"
+      - "/v1/timerNodes/*"
+      - "/v1/emailhooks/*"
+      - "/v1/webhooks/*"
+      - "/v1/secrets/*"
+      - "/v1/emails/*"
+      - "/v1/autobotLogs/*"
+      - "/v1/wakeUpLogs/*"
+
+  qir:
+    host: "*"
+    paths:
+      - "/v1/qirAnalyses/*"
+      - "/v1/qirAdditionals/*"
+      - "/v1/qirNgs/*"
+      - "/v1/qirDatas/*"
+      - "/v1/qirExports/*"
+      - "/v1/machines/*"
+      - "/v1/moldShots/*"
+
+  repair-service:
+    host: "*"
+    paths:
+      - "/v1/serviceRequisitions/*"
+      - "/v1/repairTickets/*"
+      - "/v1/finalTests/*"
+      - "/v1/paymentTickets/*"
+      - "/v1/returnTickets/*"
+      - "/v1/repairServiceReports/*"
+      - "/v1/handoverMinutes/*"
+      - "/v1/repairCodes/*"
+      - "/v1/symptoms/*"
+      - "/v1/serviceTypes/*"
+      - "/v1/failureSpareParts/*"
+      - "/v1/hlServiceRequisitions/*"
+      - "/v1/hlServiceRequisitionBatches/*"
+      - "/v1/hlServiceReturns/*"
+      - "/v1/hlServiceReturnBatches/*"
+      - "/v1/failureSparePartBatches/*"
+      - "/v1/sparePartReports/*"
+      - "/v1/sparePartForecasts/*"
+      - "/v1/sparePartGeneralReports/*"
+      - "/v1/stockOutSparePartReports/*"
+      - "/v1/stockOutSparePartGeneralReports/*"
+      - "/v1/technicianAssigns/*"
+      - "/v1/timelines/*"
+      - "/v1/serviceRequisitionBatches/*"
+      - "/v1/technicianLevels/*"
+      - "/v1/estimateTimes/*"
+      - "/v1/technicians/*"
+      - "/v1/repairTurnAroundTimes/*"
+      - "/v1/repairInvoiceRequisitions/*"
+      - "/v1/fastServiceRequisitions/*"
+      - "/v1/paymentDetails/*"
+      - "/v1/brandReturnParts/*"
+      - "/v1/internalRepairs/*"
+      - "/v1/closingDebtRepairs/*"
+      - "/v1/retailRepairs/*"
+
+  license:
+    host: "*"
+    paths:
+      - "/v1/licenses/*"
+
+  files:
+    host: "*"
+    paths: ["/v1/files/*"]
+
+  supporting-service:
+    host: "*"
+    paths: ["/supporting/*"]
+
+  signaling-payload:
+    host: "*"
+    paths: ["/payload/*"]
+    methods: ["GET", "POST", "PATCH", "OPTIONS"]
+
+  webhook:
+    host: "*"
+    paths: ["/webhook/*"]
+    methods: ["GET", "POST", "OPTIONS"]
+
+  service:
+    host: "*"
+    paths: ["/v1/*", "/v2/*", "/email/"]
+
+serviceEndpoints:
+  httpbin:
+    url: "https://httpbin.org/get"
+
+  users:
+    url: http://users:3000
+
+  supporting-service:
+    url: http://supporting-service:3000
+
+  signaling-payload:
+    url: http://signaling-payload:3000
+
+  webhook:
+    url: http://webhook:3000
+
+  service:
+    url: http://service:3000
+
+  knowledge:
+    url: http://knowledge:3000
+
+  accounting:
+    url: http://accounting:3000
+
+  automation:
+    url: http://automation:3000
+
+  qir:
+    url: http://qir:3000
+
+  warehouse:
+    url: http://warehouse:3000
+
+  license:
+    url: http://license:3000
+
+policies:
+  - cors
+  - proxy
+  - jwt
+  - terminate
+
+pipelines:
+  healthcheck:
+    apiEndpoints:
+      - healthcheck
+
+    policies:
+      - cors: &corsConfig
+          - action:
+              origin: true
+              credentials: true
+      - terminate:
+          - action:
+              statusCode: 200
+              message: "Hi! API Gateway is good!\n"
+  ip:
+    apiEndpoints:
+      - ip
+
+    policies:
+      - cors: *corsConfig
+
+      - jwt: &jwtConfig
+          - action:
+              checkCredentialExistence: false
+              secretOrPublicKeyFile: "/gateway/certs/token.public.pem"
+
+      - proxy:
+          - action:
+              serviceEndpoint: httpbin
+              changeOrigin: true
+
+  loginByPassword:
+    apiEndpoints:
+      - loginByPassword
+      - loginByTokenOptions
+
+    policies:
+      - proxy: &toUserService
+          - action:
+              serviceEndpoint: users
+              changeOrigin: true
+
+  loginByToken:
+    apiEndpoints:
+      - loginByToken
+
+    policies:
+      - cors: *corsConfig
+      - jwt: *jwtConfig
+      - proxy: *toUserService
+
+  users:
+    apiEndpoints:
+      - users
+
+    policies:
+      - cors: *corsConfig
+      - jwt: *jwtConfig
+      - proxy: *toUserService
+
+  files:
+    apiEndpoints:
+      - files
+
+    policies:
+      - cors: *corsConfig
+      - proxy:
+          - action:
+              serviceEndpoint: service
+              changeOrigin: true
+
+  supporting-service:
+    apiEndpoints:
+      - supporting-service
+
+    policies:
+      - cors: *corsConfig
+      - proxy:
+          - action:
+              serviceEndpoint: supporting-service
+              changeOrigin: true
+
+  signaling-payload:
+    apiEndpoints:
+      - signaling-payload
+
+    policies:
+      - cors: *corsConfig
+      - proxy:
+          - action:
+              serviceEndpoint: signaling-payload
+              changeOrigin: true
+
+  webhook:
+    apiEndpoints:
+      - webhook
+
+    policies:
+      - cors: *corsConfig
+      - proxy:
+          - action:
+              serviceEndpoint: webhook
+              changeOrigin: true
+
+  service:
+    apiEndpoints:
+      - service
+
+    policies:
+      - cors: *corsConfig
+      - jwt: *jwtConfig
+      - proxy:
+          - action:
+              serviceEndpoint: service
+              changeOrigin: true
+
+  knowledge:
+    apiEndpoints:
+      - knowledge
+
+    policies:
+      - cors: *corsConfig
+      - jwt: *jwtConfig
+      - proxy:
+          - action:
+              serviceEndpoint: knowledge
+              changeOrigin: true
+
+  accounting:
+    apiEndpoints:
+      - accounting
+
+    policies:
+      - cors: *corsConfig
+      - jwt: *jwtConfig
+      - proxy:
+          - action:
+              serviceEndpoint: accounting
+              changeOrigin: true
+
+  automation:
+    apiEndpoints:
+      - automation
+
+    policies:
+      - cors: *corsConfig
+      - jwt: *jwtConfig
+      - proxy:
+          - action:
+              serviceEndpoint: automation
+              changeOrigin: true
+
+  qir:
+    apiEndpoints:
+      - qir
+
+    policies:
+      - cors: *corsConfig
+      - jwt: *jwtConfig
+      - proxy:
+          - action:
+              serviceEndpoint: qir
+              changeOrigin: true
+
+  warehouse:
+    apiEndpoints:
+      - warehouse
+
+    policies:
+      - cors: *corsConfig
+      - jwt: *jwtConfig
+      - proxy:
+          - action:
+              serviceEndpoint: warehouse
+              changeOrigin: true
+              timeout: 600000
+
+  license:
+    apiEndpoints:
+      - license
+
+    policies:
+      - cors: *corsConfig
+      - jwt: *jwtConfig
+      - proxy:
+          - action:
+              serviceEndpoint: license
+              changeOrigin: true

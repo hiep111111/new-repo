@@ -1,0 +1,220 @@
+{
+	"app": {
+		"name": "TMS Smart",
+		"copyright": "Bản quyền © 2017-2021 bởi TSC Services."
+	},
+
+	"menu": {
+		"module": "Phân hệ",
+		"notifications": "Xem tất cả thông báo",
+		"sent": "gửi",
+		"at": "lúc",
+		"account": "Tài khoản",
+		"profile": "Thông tin cá nhân",
+		"checkIn": "Vào làm",
+		"checkOut": "Tan sở",
+		"tasks": "Nhiệm vụ",
+		"logOut": "Đăng xuất",
+		"quickSearch": "Tìm nhanh chức năng"
+	},
+
+	"btn": {
+		"create": "Tạo mới",
+		"delete": "Xóa",
+		"goBack": "Trở về",
+		"save": "Cập nhật",
+		"update": "Cập nhật",
+		"search": "Tìm kiếm",
+		"searchAll": "Tìm tất cả",
+		"send": "Gửi",
+    "export": "Kết xuất",
+    "accept": "Chấp nhận",
+    "reject": "Từ chối",
+    "createAndSend": "Tạo & Gửi",
+    "process": "Xử lý",
+    "finish": "Hoàn thành",
+		"rate": "Đánh giá",
+		"print": "In phiếu",
+		"showFilter": "Xem điều kiện lọc",
+		"showFirstObject": "Xem bản ghi",
+		"registerPolicy": "Đăng ký phân quyền dữ liệu",
+		"showFullScreen": "Xem toàn màn hình",
+		"showProcessGuideline": "Xem hướng dẫn quy trình",
+		"showObjectList": "Xem danh sách",
+		"clone": "Tạo bản sao",
+		"showPrevObject": "Xem bản ghi trước",
+		"showNextObject": "Xem bản ghi tiếp",
+		"resetQuery": "Xóa điều kiện",
+		"resetGroupBy": "Xóa gom nhóm",
+		"drillDown": "Phân tích",
+		"import": "Import",
+		"post": "Định khoản",
+		"reverse": "Hủy định khoản"
+	},
+
+	"tab": {
+		"search": "Tìm kiếm",
+		"utility": "Tiện ích",
+		"queryName": "Tên truy vấn",
+		"isDefaultQuery": "Truy vấn mặc định",
+		"saveQuery": "Lưu truy vấn",
+		"savedQueryName": "Mẫu truy vấn",
+    "advancedSearch": "Tìm kiếm nâng cao",
+    "debug": "Debug"
+  },
+  
+  "selection": {
+    "chooseOne": "Chọn giá trị",
+		"searchOne": "Gõ từ khóa cần tìm..",
+		"onDeleteSelectedItem": "Xóa bản ghi",
+		"chooseAction": "Chọn thao tác"
+  },
+
+	"form": {
+		"commentList": "Danh sách bình luận",
+    "comment": "Bình luận",
+		"messageList": "Tin nhắn",
+		"searchingCondition": "Tìm kiếm",
+		"groupingField": "Điều kiện nhóm kết quả"
+	},
+
+	"table": {
+		"order": "STT",
+		"name": "Tên",
+		"fieldName": "Tên trường",
+		"fieldValue": "Giá trị truy vấn"
+	},
+
+	"fileAttachmentList": "Danh sách file đính kèm",
+
+	"file": {
+		"fileName": "Tên file",
+		"fileType": "Loại file",
+		"fileSize": "Kích thước file",
+		"uploadedAt": "TG upload"
+	},
+
+	"label": {
+		"groupBy": "Nhóm kết quả theo"
+	},
+
+	"msg": {
+    "register": {
+      "failure": "Đăng ký chức năng thất bại",
+      "success": "Đăng ký chức năng thành công"
+    },
+
+		"create": {
+			"failure": "Không tạo mới được",
+			"inprocess": "Đang tạo mới",
+      "success": "Tạo mới thành công"
+		},
+
+		"delete": {
+			"confirmMessage": "Bạn có chắc chắn muốn xóa bản ghi này không?",
+			"failure": "Không xóa được",
+			"inprocess": "Yêu cầu xóa dữ liệu đã được ghi nhận",
+			"success": "Xóa thành công"
+		},
+
+		"httpResponseCode": {
+			"200": "Cập nhật thành công",
+			"201": "Đã tạo thành công",
+			"301": "Đã chuyển hướng sang trang khác",
+			"401": "Chưa có quyền truy cập",
+			"403": "Chưa được thiết lập quyền truy cập",
+			"404": "Không tìm thấy tài nguyên",
+			"405": "Phương thức truy cập không hợp lệ",
+			"422": "Dữ liệu chưa phù hợp",
+			"500": "Lỗi tại máy chủ",
+			"502": "Lỗi Gateway",
+			"503": "Dịch vụ đang bị gián đoạn",
+			"2xx": "Cập nhật thành công",
+			"3xx": "Chuyển hướng dịch vụ",
+			"4xx": "Lỗi phía người dùng",
+			"5xx": "Lỗi phía máy chủ"
+		},
+
+		"read": {
+			"failure": "Không đọc được",
+			"inprocess": "Đang đọc",
+			"success": "Đọc thành công"
+		},
+
+		"title": {
+			"confirm": "Xác nhận",
+			"error": "Có lỗi xảy ra",
+			"info": "Thông báo",
+			"warning": "Cảnh báo"
+		},
+
+		"update": {
+			"failure": "Không cập nhật được",
+			"inprocess": "Đang cập nhật",
+			"success": "Cập nhật thành công"
+		},
+
+		"validate": {
+			"failure": "không phù hợp.",
+			"inprocess": "đang kiểm tra.",
+			"success": "hợp lệ.",
+			"isDuplicated": "bị trùng.",
+			"isRequired": "bắt buộc nhập."
+		},
+
+		"filter": {
+			"failure": "không phù hợp."
+		},
+
+		"import": {
+			"failure": "Không import được",
+			"success": "Import thành công"
+		}
+	},
+
+	"pageNav": {
+		"itemsPerPage": "{itemsPerPage, plural, =0 {#} other {# (bản ghi / trang)}}",
+		"totalAmount": "{totalAmount, plural, =0 {Không tìm thấy bản ghi nào. } other {Tìm thấy # bản ghi. }}",
+		"selectedAmount": "{selectedAmount, plural, =0 {} other {với # bản ghi. }}"
+	},
+
+	"mainMenu": {
+		"asp": "ASP",
+		"BI": "Báo cáo",
+		"crm": "CRM",
+		"qualityAssurance": "Đảm bảo chất lượng",
+		"serviceDesk": "Dịch vụ IT",
+		"staff": "Nhân viên",
+		"repairService": "Sửa chữa",
+		"accounting": "Kế toán",
+		"sales": "Bán hàng",
+		"administration": "Hành chính",
+		"humanResource": "Nhân sự",
+		"warehouse": "Kho hàng",
+		"purchase": "Mua hàng",
+		"delivery": "Giao vận",
+		"masterData": "Danh mục",
+		"knowledge": "Tri thức",
+		"system": "Hệ thống",
+		"automation": "Tự động hoá",
+		"userGuide": "Hướng dẫn sử dụng",
+		"content": "Nội dung",
+		"assembly": "Sản xuất"
+	},
+
+	"search": "Tìm kiếm",
+	"choose": "Chọn",
+	"searchResult": "Kết quả tìm kiếm",
+	"searchCusotmerGroupId": "Nhóm khách hàng",
+	"searchCustomerName": "Tên khách hàng",
+	"searchCustomerCode": "Mã khách hàng",
+	"customerGroupName": "Nhóm khách hàng",
+	"customerName": "Tên khách hàng",
+	"customerCode": "Mã khách hàng",
+	"storeTypeId": "Loại kho",
+	"storeTypeName": "Loại kho",
+	"storeId": "Kho hàng",
+	"storeName": "Kho hàng",
+	"searchProductCode": "Mã sản phẩm",
+	"searchProductName": "Tên sản phẩm"
+}

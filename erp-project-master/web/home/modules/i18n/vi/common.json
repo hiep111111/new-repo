@@ -1,0 +1,6 @@
+{
+	"userAndPasswordIsRequired": "Vui lòng nhập đầy đủ tài khoản & mật khẩu.",
+	"invalidCaptcha": "Nhập sai mã Captcha.",
+	"permissionDenied": "Không lấy được phân quyền.",
+	"errorHasOccurred": "Có lỗi xảy ra"
+}
